@@ -1,0 +1,25 @@
+#tableDiv {
+	width: 95%;
+}
+#tableDiv .table th {
+	width: 12%;
+	text-align: right;
+}
+#tableDiv .table td {
+	text-align: center;
+}
+#tableDiv .table th,
+#tableDiv .table td {
+	border-top: none;
+	vertical-align: middle;
+}
+th label {
+	margin-bottom: 0;
+}
+.table input, 
+.table select, 
+.table a, 
+.table textarea, 
+.table div {
+	width: 100%;
+}

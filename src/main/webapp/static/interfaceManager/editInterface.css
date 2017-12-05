@@ -1,0 +1,64 @@
+#list_left span,
+#list_left .on,
+#list_right span,
+#list_right .on,
+.shiftCtrl_left span,
+.shiftCtrl_left .on,
+.shiftCtrl_right span,
+.shiftCtrl_right .on {
+	border: 0px solid #ddd;
+	margin: 2px;
+	cursor: pointer;
+	display: block;
+}
+#list_left .on,
+#list_right .on,
+.shiftCtrl_left .on,
+.shiftCtrl_right .on {
+	border: 0px solid red;
+	background-color: #26a0da;
+}
+th label{
+	margin-bottom: 0;
+	font-size: 14px;
+}
+.table input,
+.table select, 
+.table a, 
+.table textarea, 
+.table div {
+	width: 100%;
+}
+.table a {
+	cursor: pointer;
+	font-size: 14px;
+	text-decoration: underline ;
+}
+th {
+	width: 8%;
+	text-align: right;
+}
+.tableDiv .table td{
+	width: 40%;
+ 	text-align: center;
+}
+.tableDiv .table th,
+.tableDiv .table td {
+	border: none;
+	vertical-align: middle;
+}
+.tableDiv {
+	width: 85%;
+	overflow: hidden;
+}
+.table {
+	margin-bottom: 0;
+}
+#addParam td,
+#addWrapper td {
+	padding: 3px; 
+	border: none;
+	width: 120px;
+	text-align: center;
+	vertical-align: middle;
+}

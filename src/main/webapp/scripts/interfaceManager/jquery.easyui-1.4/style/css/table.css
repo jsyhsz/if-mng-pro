@@ -1,0 +1,80 @@
+input.inputbg{border:1px solid #cdcdcd;background:url(../images/inputbg.png) no-repeat left top}
+input.td1{height:18px; width:70%;}
+select.inputbg{border:1px solid #cdcdcd;background:url(../images/inputbg.png) no-repeat left top}
+
+/*--表格样式--*/
+.table_data{
+	display:table;
+	border:none;
+	margin:0 auto;
+	width:100%;
+	border-left:1px #c5d8e2 solid;
+	border-top:1px #c5d8e2 solid;
+	border-right:1px #c5d8e2 solid;
+	border-collapse:collapse
+}
+.table_data th,.table_data td{
+	border-bottom:1px #c5d8e2 solid;
+	border-right:1px #c5d8e2 solid;
+	line-height:26px;
+	empty-cells:show;
+	background:#fff
+}
+.table_data th{
+	color:#0272bc;
+	background:#dff1ff;
+	white-space:nowrap;
+	text-align:center;
+	font-weight:normal
+}
+.table_data a{
+	color:#1859B3;
+}
+.table_data a.btn,.table_data a.btn:visited{color:#fff}
+
+.table_affairs th,.table_affairs td{
+	text-align:center;
+}
+.table_data .tab td{
+	background:#f3faff;text-align:center;
+}
+.table_data .hover td{
+	background:#fff
+}
+
+.table_data2{
+	display:table;
+	border:none;
+	margin:0 auto;
+	width:100%;
+	border-left:1px #c5d8e2 solid;
+	border-bottom:1px #c5d8e2 solid;
+	border-right:1px #c5d8e2 solid;
+	border-collapse:collapse
+}
+.table_data2 th{
+	border-right:1px #c5d8e2 solid;
+	border-top:1px #c5d8e2 solid;
+	line-height:23px;
+	height:23px;
+	color:#444;
+	background:url(../images/icon.png) repeat-x 0 -177px
+}
+.table_data2 td{
+	border-bottom:1px #e7f5fb solid;
+	height:58px;
+	line-height:160%;
+	border-right:none;
+	text-align:left;
+	color:#808080
+}
+.table_data2 td b{
+	color:#444;
+	font-weight:normal
+}
+.table_data2 .tab td{
+	background:#f3faff;text-align:left;
+}
+.table_data2 .hover td{
+	background:#fff
+}

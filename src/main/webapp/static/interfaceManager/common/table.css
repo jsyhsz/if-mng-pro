@@ -1,0 +1,169 @@
+.ico_top {
+	display: inline-block;
+	text-align: center;
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+	background: url(../../../images/product/default/table//ico.png)
+		no-repeat -95px -366px
+}
+
+.ico_down {
+	display: inline-block;
+	text-align: center;
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+	background: url(../../../images/product/default/table//ico.png)
+		no-repeat -132px -366px
+}
+
+.ico_level {
+	display: inline-block;
+	text-align: center;
+	width: 20px;
+	height: 14px;
+	vertical-align: middle;
+	background: url(../../../images/product/default/table//arrowLevel.png)
+		no-repeat 0 0
+}
+
+.ico_more {
+	display: inline-block;
+	text-align: center;
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+	background: url(../../../images/product/default/table//ico.png)
+		no-repeat -165px -367px
+}
+
+.ico_arrow {
+	display: inline-block;
+	text-align: center;
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+	background: url(../../../images/product/default/table//ico.png)
+		no-repeat -55px -366px
+}
+
+.ico_ser1 {
+	display: inline-block;
+	width: 36px;
+	height: 36px;
+	vertical-align: middle;
+	background: url(../../../images/product/default/table//ico.png)
+		no-repeat -4px -75px
+}
+
+.ico_ser2 {
+	display: inline-block;
+	width: 36px;
+	height: 36px;
+	vertical-align: middle;
+	background: url(../../../images/product/default/table//ico.png)
+		no-repeat -50px -75px
+}
+
+.ico_ser3 {
+	display: inline-block;
+	width: 36px;
+	height: 36px;
+	vertical-align: middle;
+	background: url(../../../images/product/default/table//ico.png)
+		no-repeat -99px -75px
+}
+
+.ico_ser4 {
+	display: inline-block;
+	width: 36px;
+	height: 36px;
+	vertical-align: middle;
+	background: url(../../../images/product/default/table//ico.png)
+		no-repeat -154px -75px
+}
+
+.ico_ser5 {
+	display: inline-block;
+	width: 36px;
+	height: 36px;
+	vertical-align: middle;
+	background: url(../../../images/product/default/table//ico.png)
+		no-repeat -4px -120px
+}
+
+.ico_ser6 {
+	display: inline-block;
+	width: 36px;
+	height: 36px;
+	vertical-align: middle;
+	background: url(../../../images/product/default/table//ico.png)
+		no-repeat -48px -120px
+}
+
+.ico_num {
+	display: inline-block;
+	text-align: center;
+	width: 18px;
+	color: #7a838b;
+	height: 18px;
+	line-height: 18px;
+	vertical-align: middle
+}
+
+.table_data {
+	display: table;
+	border: 0;
+	margin: 0 auto;
+	width: 100%;
+	border-top: 1px #eaeaea solid;
+	border-bottom: 1px #eaeaea solid;
+	border-collapse: collapse
+}
+
+.table_data th,.table_data td {
+	line-height: 44px;
+	empty-cells: show;
+	background: #fafafa
+}
+
+.table_data a {
+	color: #1859b3
+}
+
+.table_data a.btn,.table_data a.btn:visited {
+	color: #fff
+}
+
+.table_data .tab td {
+	background: #fff
+}
+
+.table_data .hover td {
+	background: #eef1f6
+}
+
+.table_data2 {
+	display: table;
+	border: 0;
+	margin: 0 auto;
+	width: 100%;
+	border: 1px #eaeaea solid;
+	border-collapse: collapse
+}
+
+.table_data2 th {
+	line-height: 20px;
+	background: #eaf6ff;
+	border-right: 1px #eaeaea solid;
+	border-bottom: 1px #eaeaea solid
+}
+
+.table_data2 td {
+	line-height: 23px;
+	empty-cells: show;
+	background: #fafafa;
+	border-right: 1px #eaeaea solid;
+	border-bottom: 1px #eaeaea solid
+}

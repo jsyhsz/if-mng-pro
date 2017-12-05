@@ -1,0 +1,18 @@
+*{font-size:12px; font-family:"Microsoft YaHei"}
+
+a{text-decoration:none;}
+
+#nav ul{list-style-type:none;margin:0px; padding:2px;padding-bottom:1px}
+#nav ul li{ padding:8px;}
+#nav ul li a{line-height:18px;text-decoration:none;}
+#nav ul li div{margin:0px 0px;padding-left:2px;padding-top:2px;}
+#nav ul li div:hover{cursor:pointer;text-decoration:none;}
+#nav ul li div:hover a{color:#0172be;text-decoration:none;}
+#nav ul li div:selected{border:2px solid #416AA3;cursor:default;text-decoration:none;}
+#nav ul li div:selected a{color:#0A0A0A; font-weight:bold;text-decoration:none;}
+
+
+.iconmenu{ width:16px;line-height:18px;display:inline-block;}
+.iconmenuReplace{background:url(../images/m_ico2.png) no-repeat center center;width:16px;line-height:18px;display:inline-block;}
+.icontitle{background:url(../images/m_ico1.png) no-repeat  center center; width:8px;height:8px;display:inline-block;}
+.icontabstitle{background:url(../images/0.png) no-repeat center center;line-height:5px; display:inline-block;}

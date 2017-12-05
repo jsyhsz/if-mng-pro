@@ -1,0 +1,58 @@
+.ico_use1{display:inline-block;width:16px;height:18px;vertical-align:middle;background:url(../images/ico.png) no-repeat 0 -60px;}
+
+.ico_use2{display:inline-block;width:16px;height:18px;margin:10px 10px 0 0;vertical-align:middle;background:url(../images/ico.png) no-repeat -23px -60px; cursor:pointer}
+.ico_use3{display:inline-block;width:16px;height:18px;margin:9px 10px 0 0;vertical-align:middle;background:url(../images/ico.png) no-repeat -41px -60px;cursor:pointer}
+
+
+
+.ico_about1{display:inline-block;width:16px;height:16px;vertical-align:middle;background:url(../images/ico.png) no-repeat 0 -37px;}
+.ico_about2{display:inline-block;width:16px;height:16px;vertical-align:middle;background:url(../images/ico.png) no-repeat -16px -37px;}
+.ico_about3{display:inline-block;width:16px;height:16px;vertical-align:middle;background:url(../images/ico.png) no-repeat -32px -37px;}
+.ico_about4{display:inline-block;width:16px;height:16px;vertical-align:middle;background:url(../images/ico.png) no-repeat -48px -37px;}
+.ico_about5{display:inline-block;width:16px;height:16px;vertical-align:middle;background:url(../images/ico.png) no-repeat -64px -37px;}
+.ico_about6{display:inline-block;width:16px;height:16px;vertical-align:middle;background:url(../images/ico.png) no-repeat -80px -37px;}
+
+.ico_img1{float:left; margin:0 15px;width:35px;height:35px;vertical-align:middle;background:url(../images/ico.png) no-repeat 0 -78px;}
+.ico_img2{float:left; margin:0 15px;width:35px;height:35px;vertical-align:middle;background:url(../images/ico.png) no-repeat -35px -78px;}
+
+
+
+.btn1{
+	position:relative;
+	display:inline-block;
+	padding:0 12px 0 0;
+	margin:0 12px;
+	height:20px;
+	left:10px;
+	line-height:20px;
+	font-size:12px;
+	font-weight:lighter;
+	cursor:pointer;
+	border:none;
+	color:#0272bc;
+	vertical-align:middle;
+	background:url(../images/btn.png) right -40px no-repeat;
+}
+.btn1,.btn1:visited,.btn1:hover{
+	color:#0272bc;
+}
+.btn1 span{
+	position:absolute;
+	left:-15px;
+	top:0;
+	height:20px;
+	width:15px;
+	background:url(../images/btn.png) 0 0 no-repeat;
+}
+
+.btn_so{display:inline-block;width:58px;height:25px;line-height:25px;font-size:12px;color:#fff;text-align:center;background:url(../images/btn.png) -80px 0px no-repeat;
+}
+.btn_so:hover{color:#fff;cursor:pointer;background:url(../images/btn.png) -142px 0px no-repeat;}
+
+.btn_so2{display:inline-block;width:120px;height:25px;line-height:25px;font-size:12px;color:#fff;text-align:center;background:url(../images/btn.png) 0 -150px no-repeat;
+}
+.btn_so2:hover{color:#fff;cursor:pointer;background:url(../images/btn.png) 0 -179px no-repeat;}
+
+
+
+

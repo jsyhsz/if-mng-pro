@@ -1,0 +1,27 @@
+@import url("header.css");
+@import url("layout.css");
+@import url("btns.css");
+@import url("table.css");
+@import url("zcover.css");
+body{
+	margin:0;
+	font-family:"Microsoft YaHei";
+	font-size:12px;
+	color:#000;
+	background:#ffffff;
+}
+.body_white{
+	background:#fff;
+}
+ul, li, ol, p, dl, dt, dd, h1, h2, h3, h4, h5,img { list-style:none; margin:0; padding:0; border: none;}
+
+/*--- 链接样式---*/
+a:link, a:visited{color:#085589;text-decoration:none;}
+a:hover, a:active{color:#2379d1;text-decoration:underline;}
+/* 通用定义---*/
+.left 		{float:left;display:inline;}
+.right 		{float:right;display:inline;}
+
+.red{color:#f00}
+.green{color:#33b01e}
+.blue{color:#0272bc}

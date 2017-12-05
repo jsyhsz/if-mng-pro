@@ -1,0 +1,60 @@
+.screen_row ul li {
+	padding: 0 10px
+}
+
+.screen_row {
+	font-size: 14px;
+	border-bottom: 1px dotted #9f9f9f;
+	padding: 10px 0
+}
+
+.screen_row b {
+	padding: 4px 8px;
+	color: #848484;
+	font-weight: lighter
+}
+
+.screen_row ul li a {
+	display: block;
+	padding: 4px 8px;
+	color: #000
+}
+
+.screen_row ul li a:hover {
+	color: #fff;
+	background-color: #5cbdf4
+}
+
+.screen_bottom {
+	width: 82px;
+	height: 22px;
+	line-height: 22px;
+	display: block;
+	font-size: 12px;
+	color: #585858;
+	background-color: #f5f5f5;
+	padding: 0 0 0 8px
+}
+
+.screen_bottom i {
+	display: block;
+	margin: 6px 0 0 3px
+}
+
+.checkbox_content span {
+	line-height: 24px
+}
+
+.indicator_content td {
+	background-color: #fff;
+	border: 1px solid #e2e2e2
+}
+
+.indicator_content h3 {
+	padding: 5px 0;
+	color: #484848
+}
+
+.indicator_back {
+	height: 96px
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>%d{HH:mm:ss.SSS}  %-5level %logger{36} - %msg%n</Pattern>
+    </layout>
+  </appender>
+	 <appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <!-- 可让每天产生一个日志文件，最多 10 个，自动回滚 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>../logs/ipmsDS-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>20</maxHistory>
+        </rollingPolicy>
+        <!-- 下面这段注释的代码可以在日志文件超过 5MB 时进行归档，并且归档文件后缀只要是 .zip 或 .gz 就会自动压缩日志归档 -->
+        <!--<file>d:/log/Unmi.log</file>-->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">-->
+        <!--<fileNamePattern>d:/log/Unmi.%i.log.zip</fileNamePattern>-->
+        <!--<minIndex>1</minIndex>-->
+        <!--<maxIndex>10</maxIndex>-->
+        <!--</rollingPolicy>-->
+        <!--<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">-->
+        <!--<maxFileSize>5MB</maxFileSize>-->
+        <!--</triggeringPolicy>-->
+        <encoder charset="gbk">
+            <pattern>[%d{HH:mm:ss.SSS}] |-%-5level [%thread]  - %msg%n</pattern>
+            <!--<pattern>[#|%d{yyyy-MM-dd}T%d{HH:mm:ss.SSSZ}|%level|glassfish3.1.2|%logger|_ThreadName=%thread|%msg|#]%n</pattern>-->
+        </encoder>
+    </appender>
+  <root level="debug">
+     <appender-ref ref="STDOUT" />
+     <appender-ref ref="RollingFile" />
+  </root>
+     <logger name="org.hibernate" level="ERROR"/>
+    <logger name="org.springframework" level="info"/>
+    <logger name="com.opensymphony" level="WARN"/>
+    <logger name="org.apache" level="WARN"/>
+     <logger name="org.eclipse" level="info"/>
+    <logger name="org.apache.zookeeper" level="ERROR"/>
+    <logger name="zookeeper" level="ERROR"/> 
+    <logger name="ch.qos.logback" level="ERROR"/> 
+</configuration>
