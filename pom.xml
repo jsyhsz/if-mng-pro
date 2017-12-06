@@ -9,6 +9,13 @@
 	<groupId>org.hw.sml</groupId>
 	<artifactId>sml-mng-pro</artifactId>
 	<description>sml-mng-pro</description>
+	<properties>
+		<dir.bin>${project.build.directory}/bin</dir.bin>
+		<dir.conf>${project.build.directory}/conf</dir.conf>
+		<dir.lib>${project.build.directory}/lib</dir.lib>
+		<dir.logs>${project.build.directory}/logs</dir.logs>
+
+	</properties>
 	<dependencies>
 		<!-- 公共框架基础资源模块 -->
 		<dependency>
@@ -37,17 +44,23 @@
 			<version>1.6</version>
 		</dependency>
 		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>1.0.13</version>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.14</version>
 		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
 				<excludes>
-					<exclude>*.propertie</exclude>
+					<exclude>*.properties</exclude>
 				</excludes>
 			</resource>
 		</resources>
@@ -64,12 +77,69 @@
 						</goals>
 						<configuration>
 							<outputDirectory>
-								${project.build.directory}/../lib
+								${project.build.directory}/lib
 							</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>install</id>
+						<phase>install</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<!-- -->
+								<mkdir dir="${dir.bin}" />
+								<mkdir dir="${dir.conf}" />
+								<mkdir dir="${dir.logs}" />
+								<mkdir dir="${dir.bin}/src" />
+								<mkdir dir="${dir.bin}/src/main" />
+								<mkdir dir="${dir.bin}/src/main/webapp" />
+								<copy todir="${dir.bin}">
+									<fileset dir="${project.build.directory}/../src/bin">
+										<include name="**/*" />
+									</fileset>
+								</copy>
+								<copy todir="${dir.conf}">
+									<fileset dir="${project.build.directory}/../src/main/resources">
+										<include name="**/*" />
+									</fileset>
+								</copy>
+								<copy todir="${dir.bin}/src/main/webapp">
+									<fileset dir="${project.build.directory}/../src/main/webapp">
+										<include name="**/*" />
+									</fileset>
+								</copy>
+							</tasks>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
 		</plugins>
 	</build>
+	<repositories>
+		<repository>
+			<id>hw-snapshots</id>
+			<name>hw-snapshots</name>
+			<url>http://23.247.25.117:8081/nexus/content/repositories/snapshots</url>
+		</repository>
+		<repository>
+			<id>hw-releases</id>
+			<name>hw-releases</name>
+			<url>http://23.247.25.117:8081/nexus/content/repositories/releases</url>
+		</repository>
+		<repository>
+			<id>hw-3dr</id>
+			<name>hw-3dr</name>
+			<url>http://23.247.25.117:8081/nexus/content/repositories/thirdparty</url>
+		</repository>
+	</repositories>
+	<packaging>pom</packaging>
 </project>
