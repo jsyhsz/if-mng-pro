@@ -1,5 +1,17 @@
 create table DM_CO_BA_CFG_RCPT_IF
 (
+  id             VARCHAR2(128) primary key,
+  mainsql        CLOB,
+  rebuild_info   CLOB default '{}',
+  condition_info VARCHAR2(4000) default '{}',
+  cache_enabled  NUMBER default 0,
+  cache_minutes  NUMBER default 5,
+  db_id          VARCHAR2(128),
+  describe       VARCHAR2(4000),
+  update_time    DATE default sysdate
+);
+create table DM_CO_BA_CFG_RCPT_IF_log
+(
   id             VARCHAR2(128) not null,
   mainsql        CLOB,
   rebuild_info   CLOB default '{}',
@@ -12,13 +24,16 @@ create table DM_CO_BA_CFG_RCPT_IF
 );
 insert into dm_co_ba_cfg_rcpt_if (ID, MAINSQL, REBUILD_INFO, CONDITION_INFO, CACHE_ENABLED, CACHE_MINUTES, DB_ID, DESCRIBE, UPDATE_TIME)
 values ('if-cfg-interMngBuilderQuery', 'select * from dm_co_ba_cfg_rcpt_if_builder ', '0
-toLowerCaseForKey=false', 'defJt', 0, 5, 'defJt', '', to_date('07-03-2017 17:12:42', 'dd-mm-yyyy hh24:mi:ss'));
-insert into DM_CO_BA_CFG_RCPT_IF (ID, MAINSQL, REBUILD_INFO, CONDITION_INFO, CACHE_ENABLED, CACHE_MINUTES, DB_ID, DESCRIBE, UPDATE_TIME)
-values ('if-cfg-enum-dss', 'select ''defJt'' as id_,''Ä¬ÈÏ'' as name_ from dual', 'GroupFieldDataBuilder
+toLowerCaseForKey=false', 'defJt', 1, 120, 'defJt', 'æ¥å£é…ç½®ç®¡ç†-åŒ…è£…å™¨æšä¸¾', to_date('24-10-2017 17:54:08', 'dd-mm-yyyy hh24:mi:ss'));
+
+insert into dm_co_ba_cfg_rcpt_if (ID, MAINSQL, REBUILD_INFO, CONDITION_INFO, CACHE_ENABLED, CACHE_MINUTES, DB_ID, DESCRIBE, UPDATE_TIME)
+values ('if-cfg-enum-dss', 'select ''defJt'' as "id_",''é»˜è®¤'' as "name_" from dual
+union all
+select ''ahDC'' ,''èµ„æºåº“''  from dual', 'GroupFieldDataBuilder
 groupname=id_
-oriFields=
-newFields=
-toLowerCaseForKey=true', '{}', 0, 0, 'defJt', '½Ó¿ÚÅäÖÃ¹ÜÀí-Êı¾İÔ´Ã¶¾Ù', to_date('13-10-2017 10:25:03', 'dd-mm-yyyy hh24:mi:ss'));
+oriFields=id_,name_
+newFields=id_,name_@el(''#{T(sun.misc.BASE64Encoder).encode(#{(''$value'').getBytes()})}'')', '{}', 1, 120, 'defJt', 'æ¥å£é…ç½®ç®¡ç†-æ•°æ®æºæšä¸¾', to_date('05-12-2017 18:57:38', 'dd-mm-yyyy hh24:mi:ss'));
+
 insert into dm_co_ba_cfg_rcpt_if (ID, MAINSQL, REBUILD_INFO, CONDITION_INFO, CACHE_ENABLED, CACHE_MINUTES, DB_ID, DESCRIBE, UPDATE_TIME)
 values ('if-cfg-interMngEgQuery', 'select * from DM_CO_BA_CFG_RCPT_IF_EG where id=#id#', '{"type":"0"}', '{
 "sqlParams":
@@ -47,17 +62,17 @@ values ('if-cfg-interMngEgUpdate', '<if test=" ''@update_type''==''insert'' ">
 "sqlParams":
 [
 {"name":"id","type":"char","enabled":"1","descr":"id"},
-{"name":"param_info","type":"char","enabled":"1","descr":"µØÊĞid"},
-{"name":"db_id","type":"char","enabled":"1","descr":"µØÊĞid"},
-{"name":"descr","type":"char","enabled":"1","descr":"µØÊĞid"},
-{"name":"url","type":"char","enabled":"1","descr":"µØÊĞid"},
-{"name":"update_type","type":"char","enabled":"1","descr":"µØÊĞid"},
-{"name":"id_eg","type":"char","enabled":"1","descr":"µØÊĞid"}
+{"name":"param_info","type":"char","enabled":"1","descr":"åœ°å¸‚id"},
+{"name":"db_id","type":"char","enabled":"1","descr":"åœ°å¸‚id"},
+{"name":"descr","type":"char","enabled":"1","descr":"åœ°å¸‚id"},
+{"name":"url","type":"char","enabled":"1","descr":"åœ°å¸‚id"},
+{"name":"update_type","type":"char","enabled":"1","descr":"åœ°å¸‚id"},
+{"name":"id_eg","type":"char","enabled":"1","descr":"åœ°å¸‚id"}
 ]
-}', 0, 5, 'defJt', '', to_date('07-03-2017 17:12:42', 'dd-mm-yyyy hh24:mi:ss'));
+}', 0, 0, 'defJt', 'æ¥å£é…ç½®ç®¡ç†-æµ‹è¯•æ ·ä¾‹è¡¨updateæ“ä½œ', to_date('05-12-2017 16:57:28', 'dd-mm-yyyy hh24:mi:ss'));
 
 insert into dm_co_ba_cfg_rcpt_if (ID, MAINSQL, REBUILD_INFO, CONDITION_INFO, CACHE_ENABLED, CACHE_MINUTES, DB_ID, DESCRIBE, UPDATE_TIME)
-values ('if-cfg-interMngFieldQuery', '  select 
+values ('if-cfg-interMngFieldQuery', '  select
 <isNotEmpty property="fields">
     $fields$
 </isNotEmpty>
@@ -68,13 +83,13 @@ from  dm_co_ba_cfg_rcpt_if  where id=#id#', '{"type":"0"}', '{
 "sqlParams":
 [
 {"name":"id","type":"char","enabled":"1"},
-{"name":"fields","type":"char","enabled":"1","defaultValue":"","descr":"ÊÇ·ñËùÓĞ"}
+{"name":"fields","type":"char","enabled":"1","defaultValue":"","descr":"æ˜¯å¦æ‰€æœ‰"}
 ]
-}', 0, 5, 'defJt', '', to_date('07-03-2017 17:12:42', 'dd-mm-yyyy hh24:mi:ss'));
+}', 0, 0, 'defJt', 'æ¥å£é…ç½®ç®¡ç†-æ ¹æ®idæŸ¥å­—æ®µæŸ¥è¯¢', to_date('05-12-2017 17:14:31', 'dd-mm-yyyy hh24:mi:ss'));
 
 insert into dm_co_ba_cfg_rcpt_if (ID, MAINSQL, REBUILD_INFO, CONDITION_INFO, CACHE_ENABLED, CACHE_MINUTES, DB_ID, DESCRIBE, UPDATE_TIME)
 values ('if-cfg-interMngIfUpdate', '<if test=" ''@update_type''==''insert'' ">
-  insert into dm_co_ba_cfg_rcpt_if(id,mainsql,rebuild_info,condition_info,cache_enabled,cache_minutes,db_id,describe,update_time) 
+  insert into dm_co_ba_cfg_rcpt_if(id,mainsql,rebuild_info,condition_info,cache_enabled,cache_minutes,db_id,describe,update_time)
   values(#id#,#mainsql#,#rebuild_info#,#condition_info#,#cache_enabled#,#cache_minutes#,#db_id#,#describe#,#update_time#)
 </if>
 
@@ -86,66 +101,118 @@ values ('if-cfg-interMngIfUpdate', '<if test=" ''@update_type''==''insert'' ">
 <if test=" ''@update_type''==''update'' ">
   update dm_co_ba_cfg_rcpt_if set mainsql=#mainsql#,rebuild_info=#rebuild_info#,condition_info=#condition_info#,
   cache_enabled=#cache_enabled#,cache_minutes=#cache_minutes#,db_id=#db_id#,describe=#describe#,update_time=#update_time#  where id=#id#
-</if>', '{"type":"0"}', '{
+</if>', 'DefaultDataBuilder
+#æ‹¦æˆª-è¿”å›keyæ˜¯å¦å°å†™æ‹¦æˆª
+toLowerCaseForKey=false
+#æ‹¦æˆª-è¿”å›oriFields,newFieldsæ˜¯å¦å¿½è§†åªè¿”å›é…ç½®å­—æ®µ
+oriFields=
+newFields=
+igFieldFilter=false', '{
 "sqlParams":
 [
 {"name":"id","type":"char","enabled":"1","descr":"id"},
-{"name":"mainsql","type":"char","enabled":"1","descr":"µØÊĞid"},
-{"name":"rebuild_info","type":"number","enabled":"1","descr":"µØÊĞid"},
-{"name":"condition_info","type":"char","enabled":"1","descr":"µØÊĞid"},
-{"name":"cache_enabled","type":"number","enabled":"1","descr":"µØÊĞid"},
-{"name":"cache_minutes","type":"number","enabled":"1","descr":"µØÊĞid"},
+{"name":"mainsql","type":"char","enabled":"1","descr":"åœ°å¸‚id"},
+{"name":"rebuild_info","type":"number","enabled":"1","descr":"åœ°å¸‚id"},
+{"name":"condition_info","type":"char","enabled":"1","descr":"åœ°å¸‚id"},
+{"name":"cache_enabled","type":"number","enabled":"1","descr":"åœ°å¸‚id"},
+{"name":"cache_minutes","type":"number","enabled":"1","descr":"åœ°å¸‚id"},
 
-{"name":"db_id","type":"char","enabled":"1","descr":"µØÊĞid"},
-{"name":"describe","type":"char","enabled":"1","descr":"µØÊĞid"},
-{"name":"update_time","type":"date","enabled":"1","descr":"µØÊĞid"},
-{"name":"update_type","type":"char","enabled":"1","descr":"µØÊĞid"}
+{"name":"db_id","type":"char","enabled":"1","descr":"åœ°å¸‚id"},
+{"name":"describe","type":"char","enabled":"1","descr":"åœ°å¸‚id"},
+{"name":"update_time","type":"date","enabled":"1","descr":"åœ°å¸‚id"},
+{"name":"update_type","type":"char","enabled":"1","descr":"åœ°å¸‚id"}
 ]
-}', 0, 5, 'defJt', '', to_date('07-03-2017 17:12:42', 'dd-mm-yyyy hh24:mi:ss'));
+}', 0, 0, 'defJt', 'æ¥å£é…ç½®ç®¡ç†-æ¥å£è¡¨updateæ“ä½œ', to_date('05-12-2017 17:03:19', 'dd-mm-yyyy hh24:mi:ss'));
 
 insert into dm_co_ba_cfg_rcpt_if (ID, MAINSQL, REBUILD_INFO, CONDITION_INFO, CACHE_ENABLED, CACHE_MINUTES, DB_ID, DESCRIBE, UPDATE_TIME)
 values ('if-cfg-interMngLike', '<select id="select">
 
-select substr(id,1,instr(id,''-'',1)-1)  sign ,id,mainsql,rebuild_info,condition_info,cache_enabled,db_id,describe,to_char(update_time,''yyyy-mm-dd hh24:mi:ss'') update_time from dm_co_ba_cfg_rcpt_if where 1=1 
-<isNotEmpty property="id"> and  id like ''%''||#id#||''%'' </isNotEmpty> 
-<isNotEmpty property="describe"> and describe like ''%''||#describe#||''%'' </isNotEmpty> 
+select substr(id,1,instr(id,''-'',1)-1)  sign ,id,mainsql,rebuild_info,condition_info,cache_enabled,db_id,nvl(describe,id) describe,update_time update_time from dm_co_ba_cfg_rcpt_if where 1=1
+<isNotEmpty property="id"> and  id like ''%''||#id#||''%''  </isNotEmpty>
+<isNotEmpty property="describe"> and (describe like ''%''||#describe#||''%''  or id like ''%''||#describe#||''%'')</isNotEmpty>
 
 </select>
 
 <if test=" ''@queryType''==''select'' ">
-      select * from (select t1.*, rownum row_ from (<included id="select"/>  
+      select * from (select t1.*, rownum row_ from (<included id="select"/>
       <isNotEmpty property="sidx">
             order by $sidx$ $sord$ nulls last
       </isNotEmpty>
-      ) t1) where row_ >= (#page# - 1) * #limit# + 1 and row_ < #page# * #limit# + 1 
+      ) t1) where row_ >= (#page# - 1) * #limit# + 1 and row_ < #page# * #limit# + 1
  </if>
 <if test=" ''@queryType''==''count'' ">
-      select count(1) as "total"   from (<included id="select"/>) 
-</if> ', 'PageDataBuilder', '{
-"sqlParams":
-[
-{"name":"id","type":"char","enabled":"1","descr":"id"},
-{"name":"describe","type":"char","enabled":"1","descr":"id"},
-{"name":"queryType","type":"char","enabled":"1","defaultValue":"count","descr":"µØÊĞid"},
-{"name":"page","type":"number","enabled":"1","defaultValue":"1","descr":"µØÊĞid"},
-{"name":"limit","type":"char","enabled":"1","defaultValue":"10","descr":"µØÊĞid"},
-{"name":"sidx","type":"char","enabled":"1","defaultValue":"id","descr":"µØÊĞid"},
-{"name":"sord","type":"char","enabled":"1","defaultValue":"asc","descr":"µØÊĞid"}
-]
-}', 0, 5, 'defJt', '', to_date('07-03-2017 17:12:42', 'dd-mm-yyyy hh24:mi:ss'));
-
-insert into dm_co_ba_cfg_rcpt_if (ID, MAINSQL, REBUILD_INFO, CONDITION_INFO, CACHE_ENABLED, CACHE_MINUTES, DB_ID, DESCRIBE, UPDATE_TIME)
-values ('if-cfg-interMngLogUpdate', 'select * from dm_co_ba_cfg_rcpt_if_builder ', '0
-toLowerCaseForKey=false', 'defJt', 0, 5, 'if-cfg-interMngBuilderQuery', '', to_date('07-03-2017 17:12:42', 'dd-mm-yyyy hh24:mi:ss'));
+      select count(1) as "total"   from (<included id="select"/>)
+</if> ', 'PageDataBuilder
+#åˆ†é¡µç›¸å…³å‚æ•°åç§°æ ‡è¯†è®¾å®š
+pageMark=page
+limitMark=limit
+#æ‹¦æˆª-è¿”å›keyæ˜¯å¦å°å†™æ‹¦æˆª
+toLowerCaseForKey=false
+#æ‹¦æˆª-è¿”å›oriFields,newFieldsæ˜¯å¦å¿½è§†åªè¿”å›é…ç½®å­—æ®µ
+oriFields=UPDATE_TIME
+newFields=UPDATE_TIME@date(''yyyy-MM-dd HH:mm:ss'')
+igFieldFilter=true', '{
+  "sqlParams": [
+    {
+      "name": "id",
+      "type": "char",
+      "defaultValue": "",
+      "descr": "id",
+      "enabled": "1"
+    },
+    {
+      "name": "describe",
+      "type": "char",
+      "defaultValue": "",
+      "descr": "id",
+      "enabled": "1"
+    },
+    {
+      "name": "queryType",
+      "type": "char",
+      "defaultValue": "count",
+      "descr": "æŸ¥è¯¢é€‰æ‹©",
+      "enabled": "1"
+    },
+    {
+      "name": "page",
+      "type": "number",
+      "defaultValue": "1",
+      "descr": "å½“å‰é¡µ",
+      "enabled": "1"
+    },
+    {
+      "name": "limit",
+      "type": "char",
+      "defaultValue": "10",
+      "descr": "æ¯é¡µå¤§å°",
+      "enabled": "1"
+    },
+    {
+      "name": "sidx",
+      "type": "char",
+      "defaultValue": "id",
+      "descr": "æ’åºå­—æ®µ",
+      "enabled": "1"
+    },
+    {
+      "name": "sord",
+      "type": "char",
+      "defaultValue": "asc",
+      "descr": "æ’åºæ–¹å¼",
+      "enabled": "1"
+    }
+  ]
+}', 0, 0, 'defJt', 'æ¥å£é…ç½®ç®¡ç†-æ¨¡ç³ŠæŸ¥è¯¢', to_date('25-10-2017 13:47:58', 'dd-mm-yyyy hh24:mi:ss'));
 
 insert into dm_co_ba_cfg_rcpt_if (ID, MAINSQL, REBUILD_INFO, CONDITION_INFO, CACHE_ENABLED, CACHE_MINUTES, DB_ID, DESCRIBE, UPDATE_TIME)
 values ('if-cfg-interMngMenu', '<if test=" ''@query_type''==''menu'' ">
 select * from dm_co_ba_cfg_rcpt_if_menu start with id=''0''
-¡¡¡¡connect by prior id=parent_id
+ã€€ã€€connect by prior id=parent_id order by type,seq,parent_id
 </if>
 
 <if test=" ''@update_type''==''insert'' ">
-insert into dm_co_ba_cfg_rcpt_if_menu(id,name,type,parent_id,descr,creator,update_time) 
+insert into dm_co_ba_cfg_rcpt_if_menu(id,name,type,parent_id,descr,creator,update_time)
 values(#id#,#name#,#type#,#parent_id#,#descr#,#creator#,#update_time#)
 </if>
 
@@ -171,12 +238,12 @@ type,char
 parent_id,char
 descr,char
 creator,char
-update_time,char', 0, 5, 'defJt', '', to_date('07-03-2017 17:12:42', 'dd-mm-yyyy hh24:mi:ss'));
+update_time,char', 0, 0, 'defJt', 'æ¥å£é…ç½®ç®¡ç†-èœå•-å±•ç¤º', to_date('05-12-2017 15:21:12', 'dd-mm-yyyy hh24:mi:ss'));
 
 insert into dm_co_ba_cfg_rcpt_if (ID, MAINSQL, REBUILD_INFO, CONDITION_INFO, CACHE_ENABLED, CACHE_MINUTES, DB_ID, DESCRIBE, UPDATE_TIME)
 values ('if-cfg-interMngTreeOrLike', 'select substr(id,1,instr(id,''-'',1)-1)  sign ,id,nvl(describe,id) describe,to_char(update_time,''yyyy-mm-dd hh24:mi:ss'') update_time from dm_co_ba_cfg_rcpt_if
 where id like ''%-%''
-<isNotEmpty property="id"> and id like ''%''||#id#||''%'' </isNotEmpty> 
+<isNotEmpty property="id"> and id like ''%''||#id#||''%'' </isNotEmpty>
 order by sign ', '{
 "type":2,
 "groupname":"SIGN"
@@ -187,6 +254,61 @@ order by sign ', '{
 {"name":"formatJson","type":"char","defaultValue":"false","enabled":"1"}
 ]
 }', 0, 5, 'defJt', '', to_date('07-03-2017 17:12:42', 'dd-mm-yyyy hh24:mi:ss'));
+
+insert into dm_co_ba_cfg_rcpt_if (ID, MAINSQL, REBUILD_INFO, CONDITION_INFO, CACHE_ENABLED, CACHE_MINUTES, DB_ID, DESCRIBE, UPDATE_TIME)
+values ('if-cfg-interMngLogUpdate', '<if test=" ''@update_type''==''insert'' ">
+  insert into DM_CO_BA_CFG_RCPT_IF_LOG(id,mainsql,rebuild_info,condition_info,cache_enabled,cache_minutes,db_id,describe,update_time) 
+  values(#id#,#mainsql#,#rebuild_info#,#condition_info#,#cache_enabled#,#cache_minutes#,#db_id#,#describe#,#update_time#)
+</if>', 'DefaultDataBuilder
+#æ‹¦æˆª-è¿”å›keyæ˜¯å¦å°å†™æ‹¦æˆª
+toLowerCaseForKey=false
+#æ‹¦æˆª-è¿”å›oriFields,newFieldsæ˜¯å¦å¿½è§†åªè¿”å›é…ç½®å­—æ®µ
+oriFields=
+newFields=
+igFieldFilter=false', '{
+"sqlParams":
+[
+{"name":"id","type":"char","enabled":"1","descr":"id"},
+{"name":"mainsql","type":"char","enabled":"1","descr":"åœ°å¸‚id"},
+{"name":"rebuild_info","type":"number","enabled":"1","descr":"åœ°å¸‚id"},
+{"name":"condition_info","type":"char","enabled":"1","descr":"åœ°å¸‚id"},
+{"name":"cache_enabled","type":"char","enabled":"1","descr":"åœ°å¸‚id"},
+{"name":"cache_minutes","type":"number","enabled":"1","descr":"åœ°å¸‚id"},
+{"name":"db_id","type":"char","enabled":"1","descr":"åœ°å¸‚id"},
+{"name":"describe","type":"char","enabled":"1","descr":"åœ°å¸‚id"},
+{"name":"update_time","type":"date","enabled":"1","descr":"åœ°å¸‚id"},
+{"name":"update_type","type":"char","enabled":"1","descr":"åœ°å¸‚id"}
+]
+}', 0, 0, 'defJt', 'æ¥å£é…ç½®ç®¡ç†-æ—¥å¿—è¡¨updateæ“ä½œ', to_date('06-12-2017 13:31:34', 'dd-mm-yyyy hh24:mi:ss'));
+
+insert into dm_co_ba_cfg_rcpt_if (ID, MAINSQL, REBUILD_INFO, CONDITION_INFO, CACHE_ENABLED, CACHE_MINUTES, DB_ID, DESCRIBE, UPDATE_TIME)
+values ('if-cfg-copyInter', '<if test=" ''@opLinks''==''menu'' ">
+insert into dm_co_ba_cfg_rcpt_if_menu
+select #id#,#name#,type,parent_id,descr,creator,sysdate,seq from dm_co_ba_cfg_rcpt_if_menu where id=#oldId#
+</if>
+
+<if test=" ''@opLinks''==''if'' ">
+insert into dm_co_ba_cfg_rcpt_if
+select #id#,mainsql,rebuild_info,condition_info,cache_enabled,cache_minutes,db_id,#name#,sysdate from dm_co_ba_cfg_rcpt_if where id=#oldId#
+</if>
+
+', 'DefaultDataBuilder
+#æ‹¦æˆª-è¿”å›keyæ˜¯å¦å°å†™æ‹¦æˆª
+toLowerCaseForKey=false
+#æ‹¦æˆª-è¿”å›oriFields,newFieldsæ˜¯å¦å¿½è§†åªè¿”å›é…ç½®å­—æ®µ
+oriFields=
+newFields=
+igFieldFilter=false', '{
+"sqlParams":
+[
+{"name":"id","type":"char","defaultValue":"","descr":"æ¥å£id","enabled":"0"},
+{"name":"name","type":"char","defaultValue":"","descr":"æ¥å£åç§°","enabled":"0"},
+{"name":"opLinks","type":"char","defaultValue":"menu-if","descr":"menu-if","enabled":"0"},
+{"name":"oldId","type":"char","defaultValue":"","descr":"è€æ¥å£id","enabled":"0"}
+]
+}', 0, 0, 'defJt', 'æ¥å£é…ç½®ç®¡ç†-å¤åˆ¶æ¥å£', to_date('05-12-2017 17:12:34', 'dd-mm-yyyy hh24:mi:ss'));
+
+
 
 
 -- Create table
@@ -201,39 +323,39 @@ create table DM_CO_BA_CFG_RCPT_IF_MENU
   update_time VARCHAR2(25)
 );
 insert into DM_CO_BA_CFG_RCPT_IF_menu (ID, NAME, TYPE, PARENT_ID, DESCR, CREATOR, UPDATE_TIME)
-values ('0', '½Ó¿Ú¹ÜÀí', 0, '00', '×ÜÄ¿Â¼', '', '20161104144800');
+values ('0', 'æ¥å£ç®¡ç†', 0, '00', 'æ€»ç›®å½•', '', '20161104144800');
 
 insert into DM_CO_BA_CFG_RCPT_IF_menu (ID, NAME, TYPE, PARENT_ID, DESCR, CREATOR, UPDATE_TIME)
-values ('20161105165300', '½Ó¿Ú¹ÜÀí', 0, '0', '½Ó¿Ú¹ÜÀí', '', '20161107165300');
+values ('20161105165300', 'æ¥å£ç®¡ç†', 0, '0', 'æ¥å£ç®¡ç†', '', '20161107165300');
 insert into DM_CO_BA_CFG_RCPT_IF_menu (ID, NAME, TYPE, PARENT_ID, DESCR, CREATOR, UPDATE_TIME)
-values ('if-cfg-enum-dss', '½Ó¿ÚÅäÖÃ¹ÜÀí-Êı¾İÔ´Ã¶¾Ù', 1, '20161105165300', '½Ó¿Ú', 'hw', '20171013102503');
+values ('if-cfg-enum-dss', 'æ¥å£é…ç½®ç®¡ç†-æ•°æ®æºæšä¸¾', 1, '20161105165300', 'æ¥å£', 'hw', '20171013102503');
 
 insert into DM_CO_BA_CFG_RCPT_IF_menu (ID, NAME, TYPE, PARENT_ID, DESCR, CREATOR, UPDATE_TIME)
-values ('if-cfg-interMngBuilderQuery', '½Ó¿ÚÅäÖÃ¹ÜÀí-°ü×°Æ÷Ã¶¾Ù', 1, '20161105165300', '', 'zxw', '20161107165400');
+values ('if-cfg-interMngBuilderQuery', 'æ¥å£é…ç½®ç®¡ç†-åŒ…è£…å™¨æšä¸¾', 1, '20161105165300', '', 'zxw', '20161107165400');
 
 insert into DM_CO_BA_CFG_RCPT_IF_menu (ID, NAME, TYPE, PARENT_ID, DESCR, CREATOR, UPDATE_TIME)
-values ('if-cfg-interMngEgQuery', '½Ó¿ÚÅäÖÃ¹ÜÀí-²âÊÔÑùÀı²éÑ¯', 1, '20161105165300', '', 'zxw', '20161107165400');
+values ('if-cfg-interMngEgQuery', 'æ¥å£é…ç½®ç®¡ç†-æµ‹è¯•æ ·ä¾‹æŸ¥è¯¢', 1, '20161105165300', '', 'zxw', '20161107165400');
 
 insert into DM_CO_BA_CFG_RCPT_IF_menu (ID, NAME, TYPE, PARENT_ID, DESCR, CREATOR, UPDATE_TIME)
-values ('if-cfg-interMngEgUpdate', '½Ó¿ÚÅäÖÃ¹ÜÀí-²âÊÔÑùÀı±íupdate²Ù×÷', 1, '20161105165300', '', 'zxw', '20161107165400');
+values ('if-cfg-interMngEgUpdate', 'æ¥å£é…ç½®ç®¡ç†-æµ‹è¯•æ ·ä¾‹è¡¨updateæ“ä½œ', 1, '20161105165300', '', 'zxw', '20161107165400');
 
 insert into DM_CO_BA_CFG_RCPT_IF_menu (ID, NAME, TYPE, PARENT_ID, DESCR, CREATOR, UPDATE_TIME)
-values ('if-cfg-interMngFieldQuery', '½Ó¿ÚÅäÖÃ¹ÜÀí-¸ù¾İid²é×Ö¶Î²éÑ¯', 1, '20161105165300', '', 'zxw', '20161107165400');
+values ('if-cfg-interMngFieldQuery', 'æ¥å£é…ç½®ç®¡ç†-æ ¹æ®idæŸ¥å­—æ®µæŸ¥è¯¢', 1, '20161105165300', '', 'zxw', '20161107165400');
 
 insert into DM_CO_BA_CFG_RCPT_IF_menu (ID, NAME, TYPE, PARENT_ID, DESCR, CREATOR, UPDATE_TIME)
-values ('if-cfg-interMngIfUpdate', '½Ó¿ÚÅäÖÃ¹ÜÀí-½Ó¿Ú±íupdate²Ù×÷', 1, '20161105165300', '', 'zxw', '20161107165400');
+values ('if-cfg-interMngIfUpdate', 'æ¥å£é…ç½®ç®¡ç†-æ¥å£è¡¨updateæ“ä½œ', 1, '20161105165300', '', 'zxw', '20161107165400');
 
 insert into DM_CO_BA_CFG_RCPT_IF_menu (ID, NAME, TYPE, PARENT_ID, DESCR, CREATOR, UPDATE_TIME)
-values ('if-cfg-interMngLike', '½Ó¿ÚÅäÖÃ¹ÜÀí-Ä£ºı²éÑ¯', 1, '20161105165300', 'fq', 'zxw', '20170919111925');
+values ('if-cfg-interMngLike', 'æ¥å£é…ç½®ç®¡ç†-æ¨¡ç³ŠæŸ¥è¯¢', 1, '20161105165300', 'fq', 'zxw', '20170919111925');
 
 insert into DM_CO_BA_CFG_RCPT_IF_menu (ID, NAME, TYPE, PARENT_ID, DESCR, CREATOR, UPDATE_TIME)
-values ('if-cfg-interMngLogUpdate', '½Ó¿ÚÅäÖÃ¹ÜÀí-ÈÕÖ¾±íupdate²Ù×÷', 1, '20161105165300', '', 'zxw', '20161107165400');
+values ('if-cfg-interMngLogUpdate', 'æ¥å£é…ç½®ç®¡ç†-æ—¥å¿—è¡¨updateæ“ä½œ', 1, '20161105165300', '', 'zxw', '20161107165400');
 
 insert into DM_CO_BA_CFG_RCPT_IF_menu (ID, NAME, TYPE, PARENT_ID, DESCR, CREATOR, UPDATE_TIME)
-values ('if-cfg-interMngMenu', '½Ó¿ÚÅäÖÃ¹ÜÀí-²Ëµ¥-Õ¹Ê¾', 1, '20161105165300', '', 'zxw', '20161107165400');
+values ('if-cfg-interMngMenu', 'æ¥å£é…ç½®ç®¡ç†-èœå•-å±•ç¤º', 1, '20161105165300', '', 'zxw', '20161107165400');
 
 insert into DM_CO_BA_CFG_RCPT_IF_menu (ID, NAME, TYPE, PARENT_ID, DESCR, CREATOR, UPDATE_TIME)
-values ('if-cfg-interMngTreeOrLike', '½Ó¿ÚÅäÖÃ¹ÜÀí-Ê÷Í¼Õ¹Ê¾', 1, '20161105165300', '', 'zxw', '20161107165400');
+values ('if-cfg-interMngTreeOrLike', 'æ¥å£é…ç½®ç®¡ç†-æ ‘å›¾å±•ç¤º', 1, '20161105165300', '', 'zxw', '20161107165400');
 
 -- Create table
 create table DM_CO_BA_CFG_RCPT_IF_BUILDER
@@ -247,48 +369,48 @@ create table DM_CO_BA_CFG_RCPT_IF_BUILDER
 );
 
 insert into dm_co_ba_cfg_rcpt_if_builder (ID, NAME, CLASSPATH, JAR, DESCR, TYPE)
-values (1, '·ÖÒ³Ò³ÃæÇëÇó£¬·µ»ØResult(count,datas)', 'PageDataBuilder', '', 'page=1
+values (1, 'åˆ†é¡µé¡µé¢è¯·æ±‚ï¼Œè¿”å›Result(count,datas)', 'PageDataBuilder', '', 'page=1
 limit=20', '');
 
 insert into dm_co_ba_cfg_rcpt_if_builder (ID, NAME, CLASSPATH, JAR, DESCR, TYPE)
-values (10, '·Ö×é-·µ»Ø-Map<Object,Map<String,Object>>', 'GroupFieldDataBuilder', '', 'groupname=
+values (10, 'åˆ†ç»„-è¿”å›-Map<Object,Map<String,Object>>', 'GroupFieldDataBuilder', '', 'groupname=
 oriFields=
 newFields=', '');
 
 insert into dm_co_ba_cfg_rcpt_if_builder (ID, NAME, CLASSPATH, JAR, DESCR, TYPE)
-values (2, 'Ä¬ÈÏ°ü×°Æ÷', 'DefaultDataBuilder', '', 'toLowerCaseForKey=false', '');
+values (2, 'é»˜è®¤åŒ…è£…å™¨', 'DefaultDataBuilder', '', 'toLowerCaseForKey=false', '');
 
 insert into dm_co_ba_cfg_rcpt_if_builder (ID, NAME, CLASSPATH, JAR, DESCR, TYPE)
-values (3, '±íÍ·ÖØÃüÃû°ü×°Çó', 'FieldDataBuilder', '', 'oriFields=
+values (3, 'è¡¨å¤´é‡å‘½ååŒ…è£…æ±‚', 'FieldDataBuilder', '', 'oriFields=
 newFields=', '');
 
 insert into dm_co_ba_cfg_rcpt_if_builder (ID, NAME, CLASSPATH, JAR, DESCR, TYPE)
-values (4, '¶ş´Î·Ö×é-Single·µ»Ø-Map<V,Map<V,Map<K,V>>>', 'Group2FieldDataBuilder', '', 'groupname=
+values (4, 'äºŒæ¬¡åˆ†ç»„-Singleè¿”å›-Map<V,Map<V,Map<K,V>>>', 'Group2FieldDataBuilder', '', 'groupname=
 oriFields=
 newFields=', '');
 
 insert into dm_co_ba_cfg_rcpt_if_builder (ID, NAME, CLASSPATH, JAR, DESCR, TYPE)
-values (5, '¶ş´Î·Ö×é-·µ»Ø-Map<V,Map<V,List<Map<K,V>>>>', 'Group2FieldListDataBuilder', '', 'groupname=', '');
+values (5, 'äºŒæ¬¡åˆ†ç»„-è¿”å›-Map<V,Map<V,List<Map<K,V>>>>', 'Group2FieldListDataBuilder', '', 'groupname=', '');
 
 insert into dm_co_ba_cfg_rcpt_if_builder (ID, NAME, CLASSPATH, JAR, DESCR, TYPE)
-values (6, '·Ö×é-·µ»Ø-Map<V,List<Map<K,V>>>', 'GroupDataBuilder', '', 'groupname=
+values (6, 'åˆ†ç»„-è¿”å›-Map<V,List<Map<K,V>>>', 'GroupDataBuilder', '', 'groupname=
 groupFields=', '');
 
 insert into dm_co_ba_cfg_rcpt_if_builder (ID, NAME, CLASSPATH, JAR, DESCR, TYPE)
-values (7, 'ÖØÃüÃû', 'MapDataBuilder', '', 'oriFields=
+values (7, 'é‡å‘½å', 'MapDataBuilder', '', 'oriFields=
 newFields=
 extMap=', '');
 
 insert into dm_co_ba_cfg_rcpt_if_builder (ID, NAME, CLASSPATH, JAR, DESCR, TYPE)
-values (8, '½á¹û¸ñÊ½°ü×°Æ÷-·µ»Ø-Map<String,List<Object>>', 'MapListDataBuilder', '', 'oriFields=
+values (8, 'ç»“æœæ ¼å¼åŒ…è£…å™¨-è¿”å›-Map<String,List<Object>>', 'MapListDataBuilder', '', 'oriFields=
 newFields=
 extMap=', '');
 
 insert into dm_co_ba_cfg_rcpt_if_builder (ID, NAME, CLASSPATH, JAR, DESCR, TYPE)
-values (9, 'ÅÅĞò²¢È¡TopN', 'OrderDataBuilder', '', 'orderName=
+values (9, 'æ’åºå¹¶å–TopN', 'OrderDataBuilder', '', 'orderName=
 orderType=
 topN=', '');
---½Ó¿Ú²âÊÔÑùÀı±í
+--æ¥å£æµ‹è¯•æ ·ä¾‹è¡¨
 create table DM_CO_BA_CFG_RCPT_IF_EG
 (
   id         VARCHAR2(128),
