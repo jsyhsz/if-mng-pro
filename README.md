@@ -1,4 +1,4 @@
-# if-msg-pro
+# if-mng-pro
 接口管理工具
 ## 部署
 
